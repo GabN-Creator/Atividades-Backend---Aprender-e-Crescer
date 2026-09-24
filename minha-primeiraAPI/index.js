@@ -60,4 +60,26 @@ app.post("/livros", (req, res) => {
   res.status(201).json(novo_livro);
 });
 
+app.delete("/livros/:id", (req,res) => {
+  const id = parseInt(req.params.id);
+
+  if (isNaN(id)) {
+    return res
+    .status(400)
+    .json({mensagem: "identificador deve ser um numero"});
+  };
+
+  let index_livro = livros.findIndex((livro) => {
+    return livro.id === id;
+  });
+
+  console.log(index_livro);
+
+  if(index_livro === -1){
+    return res.status(404).send();
+  };
+
+  livros.splice(index_livro,1);
+});
+
 app.listen(PORT);
