@@ -20,3 +20,4 @@ const objetos = [
 
 const objeto_achar = objetos.find((u) => u.valor < 300);
 console.log (objeto_achar);
+
